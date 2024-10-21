@@ -1,23 +1,25 @@
-namespace TaskConsoleApp
+using TaskConsoleApp.Task;
+
+namespace TaskConsoleApp.TaskList
 {
-    public class TaskList
+    public class MyTaskList
     {
         const int pageSize = 10;
-        public List<Task> ListOfTasks;
-        public TaskList(){ 
+        public List<MyTask> ListOfTasks;
+        public MyTaskList(){ 
             ListOfTasks = new();
         }
-        public List<Task> GetCurrentPage(int index){
+        public List<MyTask> GetCurrentPage(int index){
             int pageStart = index/pageSize;
             return ListOfTasks.GetRange(pageStart,pageSize);
         }
         public void DeleteTask(int index){
             ListOfTasks.RemoveAt(index);
         }
-        public void AddTask(Task task) {
+        public void AddTask(MyTask task) {
             ListOfTasks.Add(task);
         }
-        public Task GetTask(int index) {
+        public MyTask GetTask(int index) {
             return ListOfTasks[index];
         }
     }
