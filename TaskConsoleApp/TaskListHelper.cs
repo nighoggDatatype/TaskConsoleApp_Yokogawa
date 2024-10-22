@@ -9,8 +9,9 @@ namespace TaskConsoleApp.TaskListHelper
             if (index < 0 || index >= list.Count) {
                 return null;
             }
-            int pageStart = index/pageSize;
-            return list.GetRange(pageStart,pageSize);
+            int pageNum = index/pageSize;
+            int pageStart = pageNum*pageSize;
+            return list.GetRange(pageStart,Math.Min(pageSize,list.Count-pageStart));
         }
     }
 
