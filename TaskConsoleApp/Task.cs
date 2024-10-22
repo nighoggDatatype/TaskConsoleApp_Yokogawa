@@ -1,6 +1,6 @@
 namespace TaskConsoleApp.Task
 {
-    public enum TaskStatus
+    public enum MyTaskStatus
     {
         Pending,
         Completed,
@@ -9,9 +9,9 @@ namespace TaskConsoleApp.Task
     {
         public string TaskName { get; set; }
         public DateOnly Date { get; set; }
-        public TaskStatus CurrentStatus { get; set; }
+        public MyTaskStatus CurrentStatus { get; set; }
 
-        public MyTask(string name, DateOnly date, TaskStatus status = TaskStatus.Pending)
+        public MyTask(string name, DateOnly date, MyTaskStatus status = MyTaskStatus.Pending)
         {
             TaskName = name;
             Date = date;
