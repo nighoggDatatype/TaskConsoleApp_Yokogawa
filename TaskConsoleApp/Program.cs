@@ -57,10 +57,10 @@ namespace TaskConsoleApp
                             selectedTask += 1;
                             break;
                         case ConsoleKey.LeftArrow:
-                            selectedTask += MyTaskListHelper.pageSize;
+                            selectedTask -= MyTaskListHelper.pageSize;
                             break;
                         case ConsoleKey.RightArrow:
-                            selectedTask -= MyTaskListHelper.pageSize;
+                            selectedTask += MyTaskListHelper.pageSize;
                             break;
                     }
                     if (selectedTask >= list.Count){
