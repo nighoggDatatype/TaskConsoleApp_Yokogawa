@@ -10,6 +10,7 @@ namespace TaskConsoleApp
         static void Main(string[] args)
         {
             List<MyTask> list = [];
+            //list = MakeLargeList(25); //Test code
             int selectedTask = 0;
             bool loop = true;
             while(loop) {
