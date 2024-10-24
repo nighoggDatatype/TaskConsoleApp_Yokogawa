@@ -22,14 +22,14 @@ public class TaskListTests
         List<MyTask> emptyList = MakeLargeList(0);
         Assert.IsNull(MyTaskListHelper.GetCurrentPage(emptyList,0));
         List<MyTask> largeList = MakeLargeList(25);
-        List<MyTask>? firstPage = MyTaskListHelper.GetCurrentPage(largeList,0);
+        PageData? firstPage = MyTaskListHelper.GetCurrentPage(largeList,0);
         Assert.That(firstPage, Is.Not.Null);
-        Assert.That(firstPage, Has.Count.EqualTo(10));
-        Assert.That(firstPage[0].TaskName, Is.EqualTo("Task 0"));
-        List<MyTask>? lastPage = MyTaskListHelper.GetCurrentPage(largeList,22);
+        Assert.That(firstPage?.page, Has.Count.EqualTo(10));
+        Assert.That(firstPage?.page[0].TaskName, Is.EqualTo("Task 0"));
+        PageData? lastPage = MyTaskListHelper.GetCurrentPage(largeList,22);
         Assert.That(lastPage, Is.Not.Null);
-        Assert.That(lastPage, Has.Count.EqualTo(5));
-        Assert.That(lastPage[4].TaskName, Is.EqualTo("Task 24"));
+        Assert.That(lastPage?.page, Has.Count.EqualTo(5));
+        Assert.That(lastPage?.page[4].TaskName, Is.EqualTo("Task 24"));
 
         Assert.That(MyTaskListHelper.GetCurrentPage(largeList,-1), Is.Null);
         Assert.That(MyTaskListHelper.GetCurrentPage(largeList,25), Is.Null);
