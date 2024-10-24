@@ -94,5 +94,13 @@ namespace TaskConsoleApp
             } while (!success);
             list.Add(new(title, DateOnly.FromDateTime(dateTimeOut)));
         }
+        private static List<MyTask> MakeLargeList(int count) { //Debug only
+            DateOnly now = DateOnly.FromDateTime(DateTime.Today);
+            List<MyTask> list = new();
+            for (int i = 0 ; i < count ; i++) {
+                list.Add(new("Task " + i, now));
+            }
+            return list;
+        }
     }
 }
