@@ -25,16 +25,52 @@ namespace TaskConsoleApp
                         display.Append(" - " + pageData.page[i].CurrentStatus.ToString());
                         display.Append('\n');
                     }
-                    display.Append('\n');
+                    display.Append($"Page {pageData.pageNum} of {pageData.pageTotal}\n\n");
                 } else {
                     display.Append("No Task Created Yet\n\n");
                 }
                 display.Append("Press 'n' to create a new task\n");
+                if(page.HasValue){
+                    display.Append("Press 't' to toggle the status of the selected task\n");
+                    display.Append("Press 'd' to delete the selected task\n");
+                    display.Append("Use the arrow keys to navigate through the task list\n");
+                }
                 Console.Write(display);
                 var key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.N){
-                    CreateNewTask(list);
+                if (key.Key == ConsoleKey.N) {CreateNewTask(list);}
+                if(page.HasValue) {
+                    switch(key.Key) {
+                        case ConsoleKey.T:
+                            if (list[selectedTask].CurrentStatus == MyTaskStatus.Pending){
+                                list[selectedTask].CurrentStatus = MyTaskStatus.Completed;
+                            } else {
+                                list[selectedTask].CurrentStatus = MyTaskStatus.Pending;
+                            }
+                            break;
+                        case ConsoleKey.D:
+                            list.RemoveAt(selectedTask);
+                            break;
+                        case ConsoleKey.UpArrow:
+                            selectedTask -= 1;
+                            break;
+                        case ConsoleKey.DownArrow:
+                            selectedTask += 1;
+                            break;
+                        case ConsoleKey.LeftArrow:
+                            selectedTask += MyTaskListHelper.pageSize;
+                            break;
+                        case ConsoleKey.RightArrow:
+                            selectedTask -= MyTaskListHelper.pageSize;
+                            break;
+                    }
+                    if (selectedTask >= list.Count){
+                        selectedTask = list.Count - 1;
+                    }
+                    if (selectedTask < 0) {
+                        selectedTask = 0;
+                    }
                 }
+                
             }
         }
         static void CreateNewTask(List<MyTask> list){
