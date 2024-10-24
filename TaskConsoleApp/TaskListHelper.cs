@@ -20,8 +20,8 @@ namespace TaskConsoleApp.TaskListHelper
             PageData data = new();
             data.page = list.GetRange(pageStart,Math.Min(pageSize,list.Count-pageStart));
             data.offset = index % pageSize;
-            data.pageNum = pageNum;
-            data.pageTotal = list.Count/pageSize;
+            data.pageNum = pageNum + 1;
+            data.pageTotal = (list.Count/pageSize) + 1;
             return data;
         }
     }
